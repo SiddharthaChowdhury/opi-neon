@@ -1,7 +1,7 @@
 
 const User = require('../Model/Users.js');
 
-// const JWT = require('../JWT/jwt.js');
+const JWT = require('../JWT/jwt.js');
 const TEST = require('input-validate');
 const UTIL = require('util-func');
 
@@ -57,5 +57,46 @@ module.exports = {
 			}
 		})
 			
+	},
+
+	login: function(req, res){
+		var params = req.body;
+		if(!params.user || !params.password){
+			res.status(400);
+			return res.json({msg: "Error! Required fields are missing."})
+		}
+
+		if(!req.get('client_id')){ // Get from header
+			res.status(400);
+			return res.json({msg: "Error! Client identification failed."})
+		}
+
+		// Check if user exists
+		User.findOne({$or:[{email: params.user}, {phone: params.user}]}, function(err, usr){
+			if(err) return res.json(err);
+			if(usr){
+				// Compare password
+				var bcrypt = require('bcrypt');
+				if(bcrypt.compareSync(params.password, usr.password)){
+					// Create payload for JWT token
+					var payload = Object.assign({}, usr._doc, {password: undefined});
+					return res.json({
+						msg: "Success! Authentication successful",
+						token: JWT.sign(payload,{
+							issuer: "Opineon",
+							subject: payload._id.toString(),
+							audience: req.get('client_id')
+						}),
+						user: payload
+					})
+				}else{
+					res.status(400);
+					return res.json({msg: "Error! Authentication failed (403)"})
+				}
+			}else{
+				res.status(404);
+				return res.json({msg: "Error! Authentication failed. (Status:404)"})
+			}
+		})
 	}
 }

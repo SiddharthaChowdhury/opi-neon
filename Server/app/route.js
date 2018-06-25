@@ -6,8 +6,13 @@ module.exports = ($,C) =>{
 		res.status('200');
 		return res.json({hello: "World!"})
 	})
-	$.post('/rest/create-account', function(req, res, next){
+
+	$.post('/rest/create-account', function(req, res, next){ // Registration 
 		C.UserController.createAccount(req, res, next);
+	})
+
+	$.post('/rest/login', function(req, res, next){
+		C.UserController.login(req, res, next);
 	})
 
 /*
