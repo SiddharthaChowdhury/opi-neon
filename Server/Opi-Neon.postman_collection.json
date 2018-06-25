@@ -1,0 +1,52 @@
+{
+	"id": "e720bb45-9ee0-ad99-8318-f903429c38e3",
+	"name": "Opi-Neon",
+	"description": "",
+	"order": [
+		"861c8462-384f-bb84-8060-70a87f698a07"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1529918489982,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "861c8462-384f-bb84-8060-70a87f698a07",
+			"headers": "uswername: sidd\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "uswername",
+					"value": "sidd",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:1337/rest/create-account",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "e720bb45-9ee0-ad99-8318-f903429c38e3",
+			"data": [],
+			"dataMode": "raw",
+			"name": "1. Create new account",
+			"description": "**URL:** *http://localhost:1337/rest/create-account*",
+			"descriptionFormat": "html",
+			"time": 1529918542010,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\t\"email\": \"some@email.com\",\n\t\"phone\": 9742200811,\n\t\"password1\": \"assss\",\n\t\"password2\": \"assss\"\n}"
+		}
+	]
+}
