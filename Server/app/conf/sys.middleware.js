@@ -1,6 +1,6 @@
 module.exports = function(router, app){
 
-	var hosts = ['http://localhost:8080', 'http://localhost:3000'].join(', ');
+	var hosts = ['http://localhost:8080'].join(', ');
 
 	router.use((req, res, next) => {
 		res.header('access-control-allow-origin', hosts);
