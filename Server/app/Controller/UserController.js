@@ -79,7 +79,8 @@ module.exports = {
 				var bcrypt = require('bcrypt');
 				if(bcrypt.compareSync(params.password, usr.password)){
 					// Create payload for JWT token
-					var payload = Object.assign({}, usr._doc, {password: undefined});
+					var payload = Object.assign({}, usr.toJSON(), {password: undefined});
+
 					return res.json({
 						msg: "Success! Authentication successful",
 						token: JWT.sign(payload,{
